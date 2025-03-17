@@ -82,4 +82,16 @@ public class Message {
     public void setChat(Chat chat) {
         this.chat = chat;
     }
+
+    @Override
+    public String toString() {
+        return "Message{" +
+                "id=" + id +
+                ", sender=" + (sender != null ? sender.getId() : "null") +
+                ", message='" + message + '\'' +
+                ", sendingTime='" + sendingTime + '\'' +
+                ", messageType=" + messageType +
+                ", chat=" + (chat != null ? chat.getId() : "null") +
+                '}';
+    }
 }

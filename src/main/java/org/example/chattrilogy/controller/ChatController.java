@@ -40,6 +40,7 @@ public class ChatController {
             @RequestBody Message message) throws IdInvalidException {
         Chat chat = chatService.fetchChatById(chatId);
         chat.addMessage(message);
+        System.out.println(message);
         chatService.updateChat(chat);
         return ResponseEntity.ok(chat);
     }

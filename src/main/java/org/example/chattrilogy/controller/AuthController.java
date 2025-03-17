@@ -53,7 +53,7 @@ public class AuthController {
         String hashPassword = passwordEncoder.encode(registerDTO.getPassword());
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         String now = sdf.format(new Date());
-        User user = new User(registerDTO.getName(), hashPassword, registerDTO.getUsername(), "https://static-images.vnncdn.net/vps_images_publish/000001/000003/2025/1/20/ngan-ngam-thay-ca-si-jack-j97-72911.jpg?width=0&s=OQaz1tZ-7uFLA8UTXffWFQ", false, now);
+        User user = new User(registerDTO.getName(), hashPassword, registerDTO.getUsername(), "", false, now);
         userService.handleCreateUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
