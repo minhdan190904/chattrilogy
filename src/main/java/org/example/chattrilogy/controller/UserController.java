@@ -20,6 +20,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
+
     @PostMapping("/users/create")
     public ResponseEntity<User> createUserUsingPost(@RequestBody User postManUser){
         String hashPassword = passwordEncoder.encode(postManUser.getPassword());
@@ -46,7 +47,7 @@ public class UserController {
     }
 
     @PutMapping("/users")
-    public ResponseEntity<User> updateUserById(@RequestBody User user) throws IdInvalidException{
+    public ResponseEntity<User> updateUser(@RequestBody User user) throws IdInvalidException{
         return ResponseEntity.ok(userService.updateUser(user));
     }
 }

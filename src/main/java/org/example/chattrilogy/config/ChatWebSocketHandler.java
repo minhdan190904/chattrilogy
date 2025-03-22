@@ -19,9 +19,12 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         for (WebSocketSession webSocketSession : sessions) {
-            webSocketSession.sendMessage(message);
+            if (!webSocketSession.getId().equals(session.getId())) {
+                webSocketSession.sendMessage(message);
+            }
         }
     }
+
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) {

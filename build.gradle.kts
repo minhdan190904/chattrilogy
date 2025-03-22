@@ -17,7 +17,12 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
+
+    implementation ("com.google.firebase:firebase-admin:9.2.0")
+    implementation("com.google.guava:guava:33.0.0-jre")
+
     annotationProcessor("org.projectlombok:lombok")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")

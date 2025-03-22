@@ -1,6 +1,7 @@
 package org.example.chattrilogy.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +14,7 @@ public class User {
     private String password;
     private String email;
     private String profileImageUrl;
+    @JsonProperty("isOnline")
     private Boolean isOnline;
     private String lastSeen;
 
@@ -78,5 +80,9 @@ public class User {
 
     public Boolean getOnline() {
         return isOnline;
+    }
+
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", password=" + password + ", email=" + email + ", profileImageUrl=" + profileImageUrl + ", isOnline=" + isOnline + ", lastSeen=" + lastSeen + "]";
     }
 }

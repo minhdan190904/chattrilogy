@@ -1,7 +1,10 @@
 package org.example.chattrilogy.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
@@ -15,28 +18,33 @@ public class Message {
     private User sender;
 
     private String message;
+
     private String sendingTime;
 
     @Enumerated(EnumType.STRING)
     private MessageType messageType;
+
+    private boolean isSeen;
 
     @ManyToOne
     @JoinColumn(name = "chat_id", nullable = false)
     @JsonBackReference
     private Chat chat;
 
-    public Message(User sender, String message, String sendingTime, MessageType messageType) {
+    public Message(User sender, String message, MessageType messageType, boolean isSeen) {
         this.sender = sender;
         this.message = message;
-        this.sendingTime = sendingTime;
+        this.isSeen = isSeen;
         this.messageType = messageType;
+        this.sendingTime = "";
     }
 
     public Message() {
         this.sender = new User();
         this.message = "";
-        this.sendingTime = "";
+        this.isSeen = false;
         this.messageType = MessageType.TEXT;
+        this.sendingTime = "";
     }
 
     public int getId() {
@@ -47,12 +55,14 @@ public class Message {
         this.message = message;
     }
 
-    public void setSendingTime(String sendingTime) {
-        this.sendingTime = sendingTime;
-    }
+
 
     public void setMessageType(MessageType messageType) {
         this.messageType = messageType;
+    }
+
+    public void setSendingTime(String sendingTime) {
+        this.sendingTime = sendingTime;
     }
 
     public String getMessage() {
@@ -87,11 +97,20 @@ public class Message {
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", sender=" + (sender != null ? sender.getId() : "null") +
-                ", message='" + message + '\'' +
-                ", sendingTime='" + sendingTime + '\'' +
+                ", senderId=" + (sender != null ? sender.getId() : "null") +
+                ", message=\"" + message + "\"" +
+                ", sendingTime=" + sendingTime +
                 ", messageType=" + messageType +
-                ", chat=" + (chat != null ? chat.getId() : "null") +
-                '}';
+                ", chatId=" + (chat != null ? chat.getId() : "null") +
+                "}";
+    }
+
+
+    public boolean getSeen() {
+        return isSeen;
+    }
+
+    public void setSeen(boolean seen) {
+        isSeen = seen;
     }
 }

@@ -48,11 +48,12 @@ public class UserService {
 
     public User updateUser(User user) throws IdInvalidException{
         User currentUser = this.fetchUserById(user.getId());
+        User existingUser = userRepository.findByEmail(user.getEmail());
         if(currentUser != null){
-            currentUser.setEmail(user.getEmail());
-            currentUser.setName(user.getName());
-            currentUser.setPassword(user.getPassword());
-            return this.userRepository.save(currentUser);
+            if(existingUser != null && existingUser.getId() != user.getId()){
+                throw new IdInvalidException("Email already exists");
+            }
+            return this.userRepository.save(user);
         }
         return null;
     }

@@ -38,7 +38,7 @@ public class FileController {
         }
 
         String fileName = file.getOriginalFilename();
-        List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png", "gif", "bmp");
+        List<String> allowedExtensions = Arrays.asList("jpg", "jpeg", "png", "gif", "webp", "bmp", "mp4", "mkv", "mov", "avi", "wmv", "flv", "webm", "3gp");
         boolean invalid = allowedExtensions.stream().anyMatch(fileExtension -> fileName.toLowerCase().endsWith(fileExtension));
         if(!invalid){
             throw new StorageException("Invalid file format");
