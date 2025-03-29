@@ -1,13 +1,12 @@
 package org.example.chattrilogy.service;
 
-import org.example.chattrilogy.domain.Chat;
 import org.example.chattrilogy.domain.User;
-import org.example.chattrilogy.repository.ChatRepository;
 import org.example.chattrilogy.repository.UserRepository;
 import org.example.chattrilogy.util.error.IdInvalidException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,13 +52,28 @@ public class UserService {
             if(existingUser != null && existingUser.getId() != user.getId()){
                 throw new IdInvalidException("Email already exists");
             }
-            return this.userRepository.save(user);
+            currentUser.setBirthday(user.getBirthday());
+            currentUser.setEmail(user.getEmail());
+            currentUser.setName(user.getName());
+            currentUser.setPassword(user.getPassword());
+            currentUser.setLastSeen(user.getLastSeen());
+            currentUser.setOnline(user.getOnline());
+            currentUser.setProfileImageUrl(user.getProfileImageUrl());
+            return this.userRepository.save(currentUser);
         }
         return null;
+    }
+
+    public void updateStatus(int userId, boolean statusUSer) throws IdInvalidException{
+        User currentUser = this.fetchUserById(userId);
+        if(currentUser != null){
+            currentUser.setOnline(statusUSer);
+            currentUser.setLastSeen(new Date());
+            this.userRepository.save(currentUser);
+        }
     }
 
     public User getUserByUserName(String userName){
         return this.userRepository.findByEmail(userName);
     }
-
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user_device_token")
+@RequestMapping("/user_device_tokens")
 public class UserDeviceTokenController {
     private final UserDeviceTokenService userDeviceTokenService;
 
@@ -20,7 +20,7 @@ public class UserDeviceTokenController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<UserDeviceToken> createUserDeviceToken(@RequestBody UserDeviceToken userDeviceToken) throws IdInvalidException {
+    public ResponseEntity<UserDeviceToken> createUserDeviceToken(@RequestBody UserDeviceToken userDeviceToken) {
         UserDeviceToken createdUserDeviceToken = this.userDeviceTokenService.createUserDeviceToken(userDeviceToken);
         return new ResponseEntity<>(createdUserDeviceToken, HttpStatus.CREATED);
     }

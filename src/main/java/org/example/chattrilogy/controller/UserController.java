@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
     private final PasswordEncoder passwordEncoder;
@@ -20,8 +21,7 @@ public class UserController {
         this.passwordEncoder = passwordEncoder;
     }
 
-
-    @PostMapping("/users/create")
+    @PostMapping("/create")
     public ResponseEntity<User> createUserUsingPost(@RequestBody User postManUser){
         String hashPassword = passwordEncoder.encode(postManUser.getPassword());
         postManUser.setPassword(hashPassword);
@@ -29,24 +29,24 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(postManUser);
     }
 
-    @DeleteMapping("/users/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") int id) throws IdInvalidException {
         userService.handleDeleteUser(id);
-        return ResponseEntity.ok("User deleted");
+        return ResponseEntity.ok("Delete user successfully.");
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<User> fetchUserById(@PathVariable("id") int id) throws IdInvalidException{
         User user = userService.fetchUserById(id);
         return ResponseEntity.ok(user);
     }
 
-    @GetMapping("/users")
+    @GetMapping
     public ResponseEntity<List<User>> fetchAllUser(){
         return ResponseEntity.ok(userService.getAllUser());
     }
 
-    @PutMapping("/users")
+    @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User user) throws IdInvalidException{
         return ResponseEntity.ok(userService.updateUser(user));
     }

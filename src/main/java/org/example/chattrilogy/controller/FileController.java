@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/files")
 public class FileController {
 
     private final FileService fileService;
@@ -27,7 +27,7 @@ public class FileController {
         this.fileService = fileService;
     }
 
-    @PostMapping("/files")
+    @PostMapping("/upload")
     public ResponseEntity<ResUpLoadFileDTO> uploadFile(
             @RequestParam(name = "file", required = false) MultipartFile file,
             @RequestParam("folder") String folder

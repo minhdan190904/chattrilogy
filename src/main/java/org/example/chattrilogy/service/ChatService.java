@@ -53,4 +53,17 @@ public class ChatService {
         }
     }
 
+    public Integer fetchChatIdByUser1IdAndUser2Id(int user1Id, int user2Id) throws IdInvalidException {
+        User currentUser1 = userService.fetchUserById(user1Id);
+        User currentUser2 = userService.fetchUserById(user2Id);
+        Chat currentChat = chatRepository.findByUser1IdAndUser2Id(user1Id, user2Id);
+        if(currentChat == null){
+            currentChat = chatRepository.findByUser1IdAndUser2Id(user2Id, user1Id);
+        }
+        if(currentChat == null){
+            throw new IdInvalidException("Not exist chat with id: " + user1Id + " and id: " + user2Id);
+        }
+        return currentChat.getId();
+    }
+
 }

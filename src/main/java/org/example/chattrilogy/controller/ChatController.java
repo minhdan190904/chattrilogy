@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/chats")
 public class ChatController {
     private final ChatService chatService;
 
@@ -17,24 +18,24 @@ public class ChatController {
         this.chatService = chatService;
     }
 
-    @GetMapping("/chats")
+    @GetMapping
     public ResponseEntity<List<Chat>> fetchAllChat(){
         return ResponseEntity.ok(chatService.getAllChats());
     }
 
-    @GetMapping("/all_chats/{userId}")
+    @GetMapping("/user/{userId}")
     public ResponseEntity<List<Chat>> fetchAllChatByUserId(@PathVariable("userId") int id) throws IdInvalidException {
         List<Chat> chats = chatService.getChatsByUserId(id);
         return ResponseEntity.ok(chats);
     }
 
-    @GetMapping("/chats/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Chat> fetchChatById(@PathVariable("id") int id) throws IdInvalidException {
         Chat chat = chatService.fetchChatById(id);
         return ResponseEntity.ok(chat);
     }
 
-    @PutMapping("/message")
+    @PutMapping("/add_message")
     public ResponseEntity<Chat> addMessage(
             @RequestParam int chatId,
             @RequestBody Message message) throws IdInvalidException {
@@ -53,6 +54,15 @@ public class ChatController {
         chat.addMessage(message);
         chatService.updateChat(chat);
         return ResponseEntity.ok(message);
+    }
+
+    @GetMapping("/between/{user1Id}/{user2Id}")
+    public ResponseEntity<Integer> getChatIdByUser1IdAndUser2Id(
+            @PathVariable("user1Id") int user1Id,
+            @PathVariable("user2Id") int user2Id
+    ) throws IdInvalidException {
+        Integer chatId = chatService.fetchChatIdByUser1IdAndUser2Id(user1Id, user2Id);
+        return ResponseEntity.ok(chatId);
     }
 
 }

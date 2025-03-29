@@ -12,6 +12,7 @@ import org.example.chattrilogy.util.error.IdInvalidException;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -62,7 +63,19 @@ public class FriendRequestService {
         friendRequestRepository.save(existingFriendRequest);
     }
 
-
+    public List<User> getAllFriend(int userId) throws IdInvalidException {
+        List<FriendRequestDTO> currentFriendRequestDTOs = getFriendRequests(userId);
+        if (currentFriendRequestDTOs.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return currentFriendRequestDTOs
+                .stream()
+                .filter(friendRequestDTO -> friendRequestDTO.getRequestStatus() == RequestStatus.ACCEPTED)
+                .map(friendRequestDTO -> friendRequestDTO.getSender().getId() == userId
+                        ? friendRequestDTO.getReceiver()
+                        : friendRequestDTO.getSender())
+                .collect(Collectors.toList());
+    }
 
     public List<FriendRequestDTO> getFriendRequests(int userId) throws IdInvalidException {
         List<FriendRequest> friendRequests = friendRequestRepository.findAllByUserId(userId);

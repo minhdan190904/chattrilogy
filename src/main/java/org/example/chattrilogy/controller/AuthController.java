@@ -14,14 +14,15 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.example.chattrilogy.util.SecurityUtil;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
 @RestController
+@RequestMapping("/auth")
 public class AuthController {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final SecurityUtil securityUtil;
@@ -37,6 +38,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<ResLoginDTO> login(@Valid @RequestBody LoginDTO loginDTO) {
+        System.out.println("loginDTO: " + loginDTO);
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(loginDTO.getUsername(), loginDTO.getPassword());
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
@@ -51,9 +53,7 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<User> register(@Valid @RequestBody RegisterDTO registerDTO) {
         String hashPassword = passwordEncoder.encode(registerDTO.getPassword());
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        String now = sdf.format(new Date());
-        User user = new User(registerDTO.getName(), hashPassword, registerDTO.getUsername(), "avatar/user.webp", false, now);
+        User user = new User(registerDTO.getName(), hashPassword, registerDTO.getUsername(), new Date(), "avatar/user.webp", false, new Date());
         userService.handleCreateUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }

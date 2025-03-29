@@ -1,13 +1,10 @@
 package org.example.chattrilogy.controller;
 
-import org.example.chattrilogy.domain.User;
 import org.example.chattrilogy.domain.UserDeviceToken;
 import org.example.chattrilogy.domain.dto.NotificationRequest;
-import org.example.chattrilogy.domain.dto.NotificationResponse;
 import org.example.chattrilogy.service.FCMService;
 import org.example.chattrilogy.service.UserDeviceTokenService;
 import org.example.chattrilogy.util.error.IdInvalidException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notification")
+@RequestMapping("/notifications")
 public class NotificationController {
 
     private final FCMService fcmService;
