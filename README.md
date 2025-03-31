@@ -29,8 +29,8 @@ ChatTrilogy is a real-time chat application built with **Spring Boot**, **WebSoc
 ## Installation
 ### 1. Clone the repository
 ```sh
-git clone https://github.com/your-repo/chattrilogy.git
-cd chattrilogy
+[git clone https://github.com/your-repo/chattrilogy.git
+cd chattrilogy](https://github.com/minhdan190904/chattrilogy.git)
 ```
 
 ### 2. Configure `application.properties`
