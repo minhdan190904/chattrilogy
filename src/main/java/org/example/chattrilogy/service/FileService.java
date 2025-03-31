@@ -35,7 +35,7 @@ public class FileService {
         }
     }
 
-    @Value("${hoidanit.upload-file.base-uri}")
+    @Value("${minhdan.upload-file.base-uri}")
     private String baseURI;
 
     public String store(MultipartFile file, String folder) throws URISyntaxException, IOException {

@@ -20,7 +20,7 @@ public class FileController {
 
     private final FileService fileService;
 
-    @Value("${hoidanit.upload-file.base-uri}")
+    @Value("${minhdan.upload-file.base-uri}")
     private String baseURI;
 
     public FileController(FileService fileService) {

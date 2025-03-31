@@ -35,6 +35,8 @@ public class Message {
     @Enumerated(EnumType.STRING)
     private MessageType messageType;
 
+    @Getter
+    @Setter
     private boolean isSeen;
 
     @Setter
@@ -71,14 +73,5 @@ public class Message {
                 ", messageType=" + messageType +
                 ", chatId=" + (chat != null ? chat.getId() : "null") +
                 "}";
-    }
-
-
-    public boolean getSeen() {
-        return isSeen;
-    }
-
-    public void setSeen(boolean seen) {
-        isSeen = seen;
     }
 }

@@ -18,10 +18,10 @@ public class SecurityUtil {
     public static final MacAlgorithm JWT_ALGORITHM = MacAlgorithm.HS512;
     private final JwtEncoder jwtEncoder;
 
-    @Value("${hoidanit.jwt.token-validity-in-seconds}")
+    @Value("${minhdan.jwt.token-validity-in-seconds}")
     private long jwtExpiration;
 
-    @Value("${hoidanit.jwt.base64-secret}")
+    @Value("${minhdan.jwt.base64-secret}")
     private String jwtKey;
 
     public SecurityUtil(JwtEncoder jwtEncoder) {

@@ -75,7 +75,7 @@ public class SecurityConfiguration {
     }
 
 
-    @Value("${hoidanit.jwt.base64-secret}")
+    @Value("${minhdan.jwt.base64-secret}")
     private String jwtKey;
 
 
