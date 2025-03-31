@@ -58,6 +58,9 @@ spring.servlet.multipart.max-file-size=50MB
 spring.servlet.multipart.max-request-size=50MB
 minhdan.upload-file.base-path=C:/Workspace/JAVA_SPRING/upload
 
+# Note: Ensure the base path is correctly set according to your project structure.
+# The path must exist and have proper read/write permissions.
+
 # Firebase Configuration
 app.firebase-configuration-file=minhdanmessage-firebase-adminsdk.json
 ```
