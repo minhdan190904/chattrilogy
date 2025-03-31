@@ -1,6 +1,8 @@
 package org.example.chattrilogy.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
@@ -10,12 +12,18 @@ public class UserDeviceToken {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Setter
+    @Getter
     private String token;
 
+    @Setter
+    @Getter
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Setter
+    @Getter
     private String timeStamp;
 
     public UserDeviceToken(String token, User user) {
@@ -28,30 +36,5 @@ public class UserDeviceToken {
     public UserDeviceToken() {
         this.token = "";
         this.timeStamp = LocalDateTime.now().toString();
-    }
-
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public String getTimeStamp() {
-        return timeStamp;
-    }
-
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
     }
 }

@@ -1,21 +1,14 @@
 package org.example.chattrilogy.domain.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.example.chattrilogy.domain.User;
 
+@Setter
+@Getter
 public class ResLoginDTO {
     private String token;
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {this.user = user;}
-
     private User user;
-    public String getToken() {
-        return token;
-    }
-    public void setToken(String token) {
-        this.token = token;
-    }
+
 }

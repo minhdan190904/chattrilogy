@@ -3,29 +3,42 @@ package org.example.chattrilogy.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "messages")
 public class Message {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Setter
+    @Getter
     @ManyToOne
     @JoinColumn(name = "sender_id", nullable = false)
     private User sender;
 
+    @Getter
+    @Setter
     private String message;
 
+    @Getter
+    @Setter
     private String sendingTime;
 
+    @Getter
+    @Setter
     @Enumerated(EnumType.STRING)
     private MessageType messageType;
 
     private boolean isSeen;
 
+    @Setter
+    @Getter
     @ManyToOne
     @JoinColumn(name = "chat_id", nullable = false)
     @JsonBackReference
@@ -47,51 +60,6 @@ public class Message {
         this.sendingTime = "";
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-
-
-    public void setMessageType(MessageType messageType) {
-        this.messageType = messageType;
-    }
-
-    public void setSendingTime(String sendingTime) {
-        this.sendingTime = sendingTime;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public String getSendingTime() {
-        return sendingTime;
-    }
-
-    public MessageType getMessageType() {
-        return messageType;
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
-
-    public Chat getChat() {
-        return chat;
-    }
-
-    public void setChat(Chat chat) {
-        this.chat = chat;
-    }
 
     @Override
     public String toString() {

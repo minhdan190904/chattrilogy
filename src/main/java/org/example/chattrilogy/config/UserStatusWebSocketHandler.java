@@ -10,6 +10,8 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import static org.example.chattrilogy.util.HelperUtils.checkNumberPositive;
+
 @NonNullApi
 @Component
 public class UserStatusWebSocketHandler extends TextWebSocketHandler {
@@ -60,14 +62,4 @@ public class UserStatusWebSocketHandler extends TextWebSocketHandler {
         }
         return null;
     }
-
-    private boolean checkNumberPositive(String number) {
-        for (int i = 0; i < number.length(); i++) {
-            if (!Character.isDigit(number.charAt(i))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
 }

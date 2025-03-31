@@ -1,5 +1,10 @@
 package org.example.chattrilogy.domain.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class NotificationResponse {
     private int status;
     private String message;
@@ -9,19 +14,4 @@ public class NotificationResponse {
         this.message = message;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }

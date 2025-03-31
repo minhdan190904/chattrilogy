@@ -1,9 +1,13 @@
 package org.example.chattrilogy.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 @Entity
 public class Chat {
 
@@ -11,14 +15,17 @@ public class Chat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "user1_id", nullable = false)
     private User user1;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "user2_id", nullable = false)
     private User user2;
 
+    @Setter
     @OneToMany(mappedBy = "chat", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Message> messageList = new ArrayList<>();
 
@@ -45,34 +52,6 @@ public class Chat {
 
     public Message getLastMessage() {
         return messageList.isEmpty() ? null : messageList.get(messageList.size() - 1);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public List<Message> getMessageList() {
-        return messageList;
-    }
-
-    public void setMessageList(List<Message> messageList) {
-        this.messageList = messageList;
-    }
-
-    public User getUser1() {
-        return user1;
-    }
-
-    public void setUser1(User user1) {
-        this.user1 = user1;
-    }
-
-    public User getUser2() {
-        return user2;
-    }
-
-    public void setUser2(User user2) {
-        this.user2 = user2;
     }
 
     public User getOtherUser(User currentUser) {

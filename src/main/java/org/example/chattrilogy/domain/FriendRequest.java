@@ -1,7 +1,11 @@
 package org.example.chattrilogy.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 @Entity
 public class FriendRequest {
     @Id
@@ -30,46 +34,6 @@ public class FriendRequest {
         this.sender = sender;
         this.receiver = receiver;
         this.requestStatus = requestStatus;
-        this.timeSend = timeSend;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
-
-    public User getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
-    }
-
-    public RequestStatus getRequestStatus() {
-        return requestStatus;
-    }
-
-    public void setRequestStatus(RequestStatus requestStatus) {
-        this.requestStatus = requestStatus;
-    }
-
-    public String getTimeSend() {
-        return timeSend;
-    }
-
-    public void setTimeSend(String timeSend) {
         this.timeSend = timeSend;
     }
 

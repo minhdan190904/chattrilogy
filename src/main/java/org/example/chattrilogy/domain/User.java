@@ -4,6 +4,8 @@ package org.example.chattrilogy.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
@@ -11,17 +13,39 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Setter
+    @Getter
     private String name;
+
+    @Setter
+    @Getter
     private String password;
+
+    @Setter
+    @Getter
     private String email;
+
+    @Setter
+    @Getter
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM dd, yyyy hh:mm:ss a", timezone = "UTC")
     private Date birthday;
+
+    @Setter
+    @Getter
     private String profileImageUrl;
+
+    @Getter
+    @Setter
     @JsonProperty("isOnline")
     private Boolean isOnline;
+
+    @Setter
+    @Getter
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM dd, yyyy hh:mm:ss a", timezone = "UTC")
     private Date lastSeen;
 
@@ -54,66 +78,6 @@ public class User {
     }
 
     public User() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getProfileImageUrl() {
-        return profileImageUrl;
-    }
-
-    public Date getLastSeen() {
-        return lastSeen;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setProfileImageUrl(String profileImageUrl) {
-        this.profileImageUrl = profileImageUrl;
-    }
-
-    public void setOnline(Boolean online) {
-        isOnline = online;
-    }
-
-    public void setLastSeen(Date lastSeen) {
-        this.lastSeen = lastSeen;
-    }
-
-    public Boolean getOnline() {
-        return isOnline;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
     }
 
     public String toString() {

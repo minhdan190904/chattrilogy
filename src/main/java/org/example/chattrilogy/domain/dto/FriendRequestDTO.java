@@ -1,7 +1,11 @@
 package org.example.chattrilogy.domain.dto;
+import lombok.Getter;
+import lombok.Setter;
 import org.example.chattrilogy.domain.RequestStatus;
 import org.example.chattrilogy.domain.User;
 
+@Setter
+@Getter
 public class FriendRequestDTO {
 
     private User sender;
@@ -20,27 +24,4 @@ public class FriendRequestDTO {
         this.requestStatus = RequestStatus.REJECTED;
     }
 
-    public RequestStatus getRequestStatus() {
-        return requestStatus;
-    }
-
-    public void setRequestStatus(RequestStatus requestStatus) {
-        this.requestStatus = requestStatus;
-    }
-
-    public User getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
-    }
-
-    public User getSender() {
-        return sender;
-    }
-
-    public void setSender(User sender) {
-        this.sender = sender;
-    }
 }

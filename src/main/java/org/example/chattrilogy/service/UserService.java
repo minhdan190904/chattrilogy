@@ -57,7 +57,7 @@ public class UserService {
             currentUser.setName(user.getName());
             currentUser.setPassword(user.getPassword());
             currentUser.setLastSeen(user.getLastSeen());
-            currentUser.setOnline(user.getOnline());
+            currentUser.setIsOnline(user.getIsOnline());
             currentUser.setProfileImageUrl(user.getProfileImageUrl());
             return this.userRepository.save(currentUser);
         }
@@ -67,7 +67,7 @@ public class UserService {
     public void updateStatus(int userId, boolean statusUSer) throws IdInvalidException{
         User currentUser = this.fetchUserById(userId);
         if(currentUser != null){
-            currentUser.setOnline(statusUSer);
+            currentUser.setIsOnline(statusUSer);
             currentUser.setLastSeen(new Date());
             this.userRepository.save(currentUser);
         }
