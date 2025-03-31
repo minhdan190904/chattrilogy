@@ -11,7 +11,6 @@ ChatTrilogy is a real-time chat application built with **Spring Boot**, **WebSoc
 - **Edit personal information**
 - **JWT-based API authentication**
 - **Upload and store profile images**
-- **Local message storage for offline access**
 
 ## WebSocket Handlers
 1. **Chat Real-time** - Handles instant messaging
