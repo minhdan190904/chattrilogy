@@ -43,7 +43,6 @@ public class FriendRequestService {
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
         String now = sdf.format(new Date());
 
-
         if (existingFriendRequest == null) {
             existingFriendRequest = new FriendRequest(sender, receiver, friendRequestDTO.getRequestStatus(), now);
         } else {
@@ -56,7 +55,7 @@ public class FriendRequestService {
         if (friendRequestDTO.getRequestStatus() == RequestStatus.ACCEPTED) {
             if (!chatRepository.existsByUser1AndUser2(sender, receiver) &&
                     !chatRepository.existsByUser1AndUser2(receiver, sender)) {
-                chatRepository.save(new Chat(sender, receiver));
+                chatRepository.save(new Chat(sender, receiver, new Date()));
             }
         }
 

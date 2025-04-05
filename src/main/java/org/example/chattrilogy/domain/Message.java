@@ -1,12 +1,14 @@
 package org.example.chattrilogy.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "messages")
@@ -28,7 +30,8 @@ public class Message {
 
     @Getter
     @Setter
-    private String sendingTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MMM dd, yyyy hh:mm:ss a", timezone = "GMT+07:00")
+    private Date sendingTime;
 
     @Getter
     @Setter
@@ -52,7 +55,7 @@ public class Message {
         this.message = message;
         this.isSeen = isSeen;
         this.messageType = messageType;
-        this.sendingTime = "";
+        this.sendingTime = new Date();
     }
 
     public Message() {
@@ -60,7 +63,7 @@ public class Message {
         this.message = "";
         this.isSeen = false;
         this.messageType = MessageType.TEXT;
-        this.sendingTime = "";
+        this.sendingTime = new Date();
     }
 
 
