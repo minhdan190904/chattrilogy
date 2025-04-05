@@ -37,6 +37,7 @@ public class Message {
 
     @Getter
     @Setter
+    @JsonProperty("isSeen")
     private boolean isSeen;
 
     @Setter

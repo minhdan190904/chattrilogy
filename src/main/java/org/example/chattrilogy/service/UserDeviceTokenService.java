@@ -31,6 +31,15 @@ public class UserDeviceTokenService {
         }
     }
 
+    public void deleteByToken(String token) throws IdInvalidException {
+        UserDeviceToken userDeviceToken = this.userDeviceTokenRepository.findByToken(token);
+        System.out.println(token);
+        if (userDeviceToken == null) {
+            throw new IdInvalidException("Not found user device token by token: " + token);
+        }
+        userDeviceTokenRepository.delete(userDeviceToken);
+    }
+
     public List<UserDeviceToken> findByUserId(int userId) throws IdInvalidException {
         User currentUser = userService.fetchUserById(userId);
         if(currentUser == null) {

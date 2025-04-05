@@ -46,6 +46,16 @@ public class ChatController {
         return ResponseEntity.ok(chat);
     }
 
+    @PutMapping("/updateSeenLastMessage")
+    public ResponseEntity<Chat> updateSeenLastMessage(@RequestParam int chatId) throws IdInvalidException {
+        Chat chat = chatService.fetchChatById(chatId);
+        if(!chat.getLastMessage().isSeen()){
+            chat.getLastMessage().setSeen(true);
+            chatService.updateChat(chat);
+        }
+        return ResponseEntity.ok(chat);
+    }
+
     @PutMapping("/send_message")
     public ResponseEntity<Message> sendMessage(
             @RequestParam int chatId,

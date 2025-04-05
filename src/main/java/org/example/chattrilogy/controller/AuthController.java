@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.example.chattrilogy.util.SecurityUtil;
 
 import java.util.Date;
+import java.util.Random;
 
 
 @RestController
@@ -53,7 +54,9 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<User> register(@Valid @RequestBody RegisterDTO registerDTO) {
         String hashPassword = passwordEncoder.encode(registerDTO.getPassword());
-        User user = new User(registerDTO.getName(), hashPassword, registerDTO.getUsername(), new Date(), "avatar/user.webp", false, new Date());
+        Random random = new Random();
+        int randomInt = random.nextInt(353) + 1;
+        User user = new User(registerDTO.getName(), hashPassword, registerDTO.getUsername(), new Date(), "avatar/avatar_sample/" + randomInt + ".png", false, new Date());
         userService.handleCreateUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
