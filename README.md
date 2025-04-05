@@ -11,6 +11,7 @@ ChatTrilogy is a real-time chat application built with **Spring Boot**, **WebSoc
 - **Edit personal information**
 - **JWT-based API authentication**
 - **Upload and store profile images**
+- **View last seen status of friends (See when a friend was last online)**
 
 ## WebSocket Handlers
 1. **Chat Real-time** - Handles instant messaging
@@ -28,8 +29,7 @@ ChatTrilogy is a real-time chat application built with **Spring Boot**, **WebSoc
 ## Installation
 ### 1. Clone the repository
 ```sh
-git clone https://github.com/your-repo/chattrilogy.git
-cd chattrilogy
+https://github.com/minhdan190904/chattrilogy.git
 ```
 
 ### 2. Configure `application.properties`
@@ -57,6 +57,9 @@ minhdan.jwt.token-validity-in-seconds=2592000
 spring.servlet.multipart.max-file-size=50MB
 spring.servlet.multipart.max-request-size=50MB
 minhdan.upload-file.base-path=C:/Workspace/JAVA_SPRING/upload
+
+# Note: Ensure the base path is correctly set according to your project structure.
+# The path must exist and have proper read/write permissions.
 
 # Firebase Configuration
 app.firebase-configuration-file=minhdanmessage-firebase-adminsdk.json
