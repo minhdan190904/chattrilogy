@@ -50,4 +50,9 @@ public class UserController {
     public ResponseEntity<User> updateUser(@RequestBody User user) throws IdInvalidException{
         return ResponseEntity.ok(userService.updateUser(user));
     }
+
+    @GetMapping("/online")
+    public ResponseEntity<List<User>> getAllUserOnline() {
+        return ResponseEntity.ok(userService.getAllUserOnline());
+    }
 }

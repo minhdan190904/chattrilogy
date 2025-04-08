@@ -6,6 +6,7 @@ import org.example.chattrilogy.util.error.IdInvalidException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -76,4 +77,13 @@ public class UserService {
     public User getUserByUserName(String userName){
         return this.userRepository.findByEmail(userName);
     }
+
+    public List<User> getAllUserOnline() {
+        List<User> users = this.userRepository.findByIsOnline(true);
+        if(users == null){
+            return new ArrayList<>();
+        }
+        return users;
+    }
 }
+

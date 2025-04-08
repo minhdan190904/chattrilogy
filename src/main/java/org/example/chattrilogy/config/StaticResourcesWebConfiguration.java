@@ -15,5 +15,4 @@ public class StaticResourcesWebConfiguration implements WebMvcConfigurer {
         registry.addResourceHandler("/storage/**")
                 .addResourceLocations(baseURI);
     }
-
 }

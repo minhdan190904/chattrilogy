@@ -23,6 +23,9 @@ dependencies {
     implementation ("com.google.firebase:firebase-admin:9.2.0")
     implementation("com.google.guava:guava:33.0.0-jre")
 
+    //sql server
+    implementation("com.microsoft.sqlserver:mssql-jdbc:12.2.0.jre11")
+
     annotationProcessor("org.projectlombok:lombok")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-web")
